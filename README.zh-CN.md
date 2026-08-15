@@ -18,6 +18,8 @@
 
 本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-agent-preset`）发布。安装到 DSH web profile 后，包的 `postinstall` 脚本会自动部署预设文件与两个内部包。
 
+> **前置要求：** 本预设需要 **PowerShell 7（`pwsh`）**，不是 Windows 自带的 Windows PowerShell 5.1（`powershell.exe`）。请手动安装 PowerShell 7，例如从 <https://github.com/PowerShell/PowerShell/releases> 下载，或运行 `winget install Microsoft.PowerShell`。
+
 安装到 web profile：
 
 ```bash
@@ -116,8 +118,15 @@ dsh-coding-agent-preset/
 ├── LICENSE                       # MIT 许可证
 ├── README.md                     # English documentation
 ├── README.zh-CN.md               # 简体中文文档
+├── docs/
+│   ├── pro-test-evaluation.md    # Pro 模式黑洞 / MC 评测数据
+│   └── pro-test-data.json        # 机器可读的评测数据
+├── demo/
+│   ├── blackhole/                # 黑洞 Demo 产物 + Session 日志
+│   └── mc/                       # MC 风格 Demo 产物
 ├── .github/workflows/publish.yml # v* 标签触发 npm 自动发布
 ├── scripts/
+│   ├── analyze-session.mjs       # Session JSONL 轨迹词频分析器
 │   ├── check.mjs                 # pnpm build 使用的语法检查脚本
 │   └── install-preset.mjs        # postinstall：复制预设与内部包到 DSH 目录
 ├── packages/

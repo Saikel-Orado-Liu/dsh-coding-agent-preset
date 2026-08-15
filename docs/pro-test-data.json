@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-08-16T00:00:00+08:00",
+  "model": "deepseek-v4-pro",
+  "preset": "coding",
+  "reasoningEffort": "max",
+  "stats": [
+    {
+      "id": "blackhole",
+      "source": "demo/blackhole/session.jsonl",
+      "artifact": "demo/blackhole/blackhole.html",
+      "prompt": "在当前工作目录创建一个单文件 blackhole.html，用 Three.js + WebGL 实现一个可交互的实时黑洞渲染：背景星空、黑洞事件视界、引力透镜扭曲背景、发光的吸积盘、鼠标拖拽旋转视角，所有代码内联在一个 HTML 文件中，打开即可运行。",
+      "artifactBytes": 26574,
+      "artifactLines": 876,
+      "steps": 101,
+      "toolCalls": 102,
+      "toolBreakdown": {
+        "pwsh": 63,
+        "str_replace_editor": 39
+      },
+      "reasoningBlocks": 98,
+      "we": 411,
+      "lets": 383,
+      "letMe": 6,
+      "i": 132,
+      "markerFirstLine": 1,
+      "visibleReplies": 1,
+      "durationMs": 1741041,
+      "tokens": {
+        "input": 37888,
+        "output": 118394,
+        "reasoning": 80046,
+        "cacheRead": 9358464
+      },
+      "result": "pass"
+    },
+    {
+      "id": "mc",
+      "source": "demo/mc/session.jsonl",
+      "artifact": "demo/mc/index.html",
+      "prompt": "在当前工作目录创建一个单文件 index.html，用 Three.js 实现一个网页版 Minecraft 风格可玩 Demo：包含随机起伏的地形、天空与光照、第一人称鼠标视角、WASD 移动、左键放置方块、右键破坏方块，所有 HTML/CSS/JS 都写在同一个文件里，并保证直接在浏览器打开就能运行。",
+      "artifactBytes": 49769,
+      "artifactLines": 1682,
+      "steps": 168,
+      "toolCalls": 167,
+      "toolBreakdown": {
+        "pwsh": 75,
+        "str_replace_editor": 92
+      },
+      "reasoningBlocks": 162,
+      "we": 525,
+      "lets": 539,
+      "letMe": 4,
+      "i": 102,
+      "markerFirstLine": 5,
+      "visibleReplies": 1,
+      "durationMs": 3249186,
+      "tokens": {
+        "input": 45471,
+        "output": 228819,
+        "reasoning": 172468,
+        "cacheRead": 26703744
+      },
+      "result": "pass"
+    }
+  ]
+}

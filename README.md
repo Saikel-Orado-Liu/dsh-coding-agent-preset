@@ -18,6 +18,8 @@
 
 The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-agent-preset`). Installing it into a DSH web profile automatically deploys the preset files and the two internal packages via the package `postinstall` script.
 
+> **Prerequisite:** This preset requires **PowerShell 7 (`pwsh`)**, not the built-in Windows PowerShell 5.1 (`powershell.exe`). Please install PowerShell 7 manually from <https://github.com/PowerShell/PowerShell/releases> or run `winget install Microsoft.PowerShell`.
+
 Install into the web profile:
 
 ```bash
@@ -116,8 +118,15 @@ dsh-coding-agent-preset/
 ├── LICENSE                       # MIT License
 ├── README.md                     # English documentation
 ├── README.zh-CN.md               # 简体中文文档
+├── docs/
+│   ├── pro-test-evaluation.md    # Pro-mode black-hole / MC evaluation evidence
+│   └── pro-test-data.json        # Machine-readable evaluation data
+├── demo/
+│   ├── blackhole/                # Black-hole demo artifact + session log
+│   └── mc/                       # Minecraft-style demo artifact
 ├── .github/workflows/publish.yml # npm auto-publish on v* tags
 ├── scripts/
+│   ├── analyze-session.mjs       # Session JSONL trajectory fingerprint analyzer
 │   ├── check.mjs                 # Syntax check used by pnpm build
 │   └── install-preset.mjs        # postinstall: copies preset + internal packages to DSH home
 ├── packages/

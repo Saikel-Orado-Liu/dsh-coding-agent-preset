@@ -45,10 +45,10 @@ dsh web
 
 使用 DeepSeek V4 Pro（`reasoningEffort=max`）在两条“一句话网页应用生成”任务上验证。两次会话都只使用 `pwsh` + `str_replace_editor`，并生成了完整的单文件 HTML Demo。
 
-| 来源 | 产物 | 推理模块 | we | let's | let me | 可见回复 | 工具调用 | 耗时 |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| `_pro-test1` | `blackhole.html` | 98 | 411 | 383 | 6 | 1 | 102 | ~29 分钟 |
-| `_pro-test` | `index.html`（MC） | 162 | 525 | 539 | 4 | 1 | 167 | ~54 分钟 |
+| 产物 | 推理模块 | we | let's | let me | 可见回复 | 工具调用 | 耗时 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `blackhole.html` | 98 | 411 | 383 | 6 | 1 | 102 | ~29 分钟 |
+| `mc.html` | 162 | 525 | 539 | 4 | 1 | 167 | ~54 分钟 |
 
 Demo 文件与 Session 日志：[`demo/`](demo/)  
 完整分析：[`docs/pro-test-evaluation.md`](docs/pro-test-evaluation.md)

@@ -16,7 +16,7 @@ Pro 模式（`coding` preset）一句话生成测试的原始产物与 Session �
 
 ## MC
 
-- 文件：`mc/index.html`
+- 文件：`mc/mc.html`
 - Session：`mc/session.jsonl`
 - 提示词：
 

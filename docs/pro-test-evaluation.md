@@ -27,10 +27,10 @@
 
 ## 统计表
 
-| 来源 | 产物 | 推理模块 | we | let's | let me | 可见回复 | 工具调用 | 耗时 |
-|---|---|---|---:|---:|---:|---:|---:|---:|
-| `_pro-test1` | `blackhole.html` | 98 | 411 | 383 | 6 | 1 | 102 | ~29 分钟 |
-| `_pro-test` | `index.html`（MC） | 162 | 525 | 539 | 4 | 1 | 167 | ~54 分钟 |
+| 产物 | 推理模块 | we | let's | let me | 可见回复 | 工具调用 | 耗时 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `blackhole.html` | 98 | 411 | 383 | 6 | 1 | 102 | ~29 分钟 |
+| `mc.html` | 162 | 525 | 539 | 4 | 1 | 167 | ~54 分钟 |
 
 ## 产物静态检查
 
@@ -47,7 +47,7 @@
   - 鼠标拖拽旋转 / 滚轮缩放 / 双击复位
   - Three.js CDN + 原生 WebGL 离线降级
 
-### `index.html`（MC）
+### `mc.html`（MC）
 
 - 大小：`49,769` 字节
 - 行数：`1682`
@@ -95,7 +95,7 @@
 ```json
 {
   "source": "demo/mc/session.jsonl",
-  "artifact": "demo/mc/index.html",
+  "artifact": "demo/mc/mc.html",
   "steps": 168,
   "toolCalls": 167,
   "toolBreakdown": {

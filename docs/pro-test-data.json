@@ -36,7 +36,7 @@
     {
       "id": "mc",
       "source": "demo/mc/session.jsonl",
-      "artifact": "demo/mc/index.html",
+      "artifact": "demo/mc/mc.html",
       "prompt": "在当前工作目录创建一个单文件 index.html，用 Three.js 实现一个网页版 Minecraft 风格可玩 Demo：包含随机起伏的地形、天空与光照、第一人称鼠标视角、WASD 移动、左键放置方块、右键破坏方块，所有 HTML/CSS/JS 都写在同一个文件里，并保证直接在浏览器打开就能运行。",
       "artifactBytes": 49769,
       "artifactLines": 1682,

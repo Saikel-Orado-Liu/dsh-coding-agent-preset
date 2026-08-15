@@ -45,10 +45,10 @@ The package also keeps the original manual deployment path: copy `agent.cordis.y
 
 Validated with DeepSeek V4 Pro (`reasoningEffort=max`) on two one-sentence web-app generation tasks. Both sessions used only `pwsh` + `str_replace_editor` and produced complete single-file HTML demos.
 
-| Source | Artifact | Reasoning blocks | we | let's | let me | Visible replies | Tool calls | Duration |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| `_pro-test1` | `blackhole.html` | 98 | 411 | 383 | 6 | 1 | 102 | ~29 min |
-| `_pro-test` | `index.html` (MC) | 162 | 525 | 539 | 4 | 1 | 167 | ~54 min |
+| Artifact | Reasoning blocks | we | let's | let me | Visible replies | Tool calls | Duration |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `blackhole.html` | 98 | 411 | 383 | 6 | 1 | 102 | ~29 min |
+| `mc.html` | 162 | 525 | 539 | 4 | 1 | 167 | ~54 min |
 
 Demo files and session logs: [`demo/`](demo/)  
 Full analysis: [`docs/pro-test-evaluation.md`](docs/pro-test-evaluation.md)

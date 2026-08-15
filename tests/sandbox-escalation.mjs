@@ -30,6 +30,7 @@ app.provide('sandbox', { confine: (argv) => ({ argv }) })
 
 // fake one-shot shell executor (the host's ctx.shell)
 let shellDenied = false
+let shellDenialStderr = ''
 const shellRuns = []
 app.provide('shell', {
   sandboxMode: 'read-only',
@@ -39,7 +40,7 @@ app.provide('shell', {
     return {
       exitCode: 0, signal: null, timedOut: false, aborted: false, timeoutMs: 300000,
       stdout: { text: 'one-shot-out', truncated: false },
-      stderr: { text: '', truncated: false },
+      stderr: { text: shellDenialStderr, truncated: false },
       sandbox: { mode: r.sandboxPolicy?.mode, denied: shellDenied },
     }
   },
@@ -123,6 +124,14 @@ r = await run('Write-Output "x"')
 check('T3 denial marker rendered', r.includes('[sandbox: file access denied under read-only mode]'), JSON.stringify(r))
 check('T3 escalation hint rendered', r.includes('escalation available — retry this exact command once with sandbox_permissions'), JSON.stringify(r))
 shellDenied = false
+
+// ---- T3b: Windows ACL denial wording without sandbox.denied still renders the hint ----
+shellDenialStderr = "fatal error - couldn't create signal pipe, Win32 error 5"
+shellRuns.length = 0
+r = await run('git push')
+check('T3b stderr denial marker rendered', r.includes('[sandbox: file access denied under read-only mode]'), JSON.stringify(r))
+check('T3b stderr escalation hint rendered', r.includes('escalation available — retry this exact command once with sandbox_permissions'), JSON.stringify(r))
+shellDenialStderr = ''
 
 // ---- T4: user rejection -> error, nothing ran ----
 approvalOutcome = 'rejected'

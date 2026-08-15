@@ -304,6 +304,32 @@ function oneShotStreamText(output) {
 }
 
 /**
+ * Windows sandbox/runner denials that the host executor may not classify into
+ * `result.sandbox.denied`. The official Windows ACL signatures cover file
+ * access wording, but MSYS/Git helper processes can surface the same ACL
+ * denial as `Win32 error 5` / `couldn't create signal pipe`; without this
+ * fallback the model would see a bare command failure and never receive the
+ * same-turn escalation hint.
+ */
+const WINDOWS_SANDBOX_DENIAL_PATTERNS = [
+  /win32 error 5/i,
+  /couldn'?t create signal pipe/i,
+  /could not create signal pipe/i,
+  /cannot create signal pipe/i,
+  /\bEPERM\b/i,
+  /access is denied/i,
+  /access to the path/i,
+  /permission denied/i,
+  /operation not permitted/i,
+  /read-only file system/i,
+];
+
+function looksLikeSandboxDenial(result) {
+  const stderr = result.stderr?.text ?? "";
+  return WINDOWS_SANDBOX_DENIAL_PATTERNS.some((pattern) => pattern.test(stderr));
+}
+
+/**
  * Shape one finished one-shot run into the text the model sees, mirroring the
  * official one-shot pwsh renderer: stdout, a marked stderr section, sandbox
  * denial markers with the same-turn escalation hint, timeout/signal/exit
@@ -319,8 +345,8 @@ function renderOneShotResult(result) {
   }
   if (body.length === 0) body = "(no output)";
   const markers = [];
-  if (result.sandbox?.denied) {
-    markers.push(sandboxDenialMarker(result.sandbox.mode));
+  if (result.sandbox?.denied || looksLikeSandboxDenial(result)) {
+    markers.push(sandboxDenialMarker(result.sandbox?.mode ?? "unknown"));
     if (ESCALATION_TARGETS.length > 0) markers.push(escalationHintMarker("command"));
   }
   if (result.timedOut) markers.push(`[timed out after ${result.timeoutMs}ms]`);

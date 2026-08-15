@@ -1,0 +1,19 @@
+{
+  "name": "dsh-tool-pwsh-persistent",
+  "version": "0.1.0",
+  "description": "Model-facing persistent pwsh (PowerShell 7) tool for Windows, mirroring @deepseek-ai/dsh-tool-bash-persistent",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@deepseek-ai/dsh-sandbox": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-sandbox-policy": "^0.1.0-rc.6",
+    "@deepseek-ai/schemastery": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-terminal": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-timeout": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6"
+  },
+  "license": "MIT"
+}

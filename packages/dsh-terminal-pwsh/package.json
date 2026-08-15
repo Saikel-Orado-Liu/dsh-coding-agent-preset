@@ -1,0 +1,18 @@
+{
+  "name": "dsh-terminal-pwsh",
+  "version": "0.1.0",
+  "description": "Persistent pwsh (PowerShell 7) PTY backend for Windows, mirroring @deepseek-ai/dsh-terminal-bash",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@deepseek-ai/dsh-sandbox-policy": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-subprocess": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-terminal": "^0.1.0-rc.6",
+    "@deepseek-ai/schemastery": "^0.1.0-rc.6",
+    "node-pty": "^1.1.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,2 @@
+name: 编码模式
+description: 极简模式的 Windows 适配：仅提供持久 pwsh 与 str_replace_editor 的双工具编码 Agent。

@@ -1,0 +1,9 @@
+# @gamegeek-saikel/dsh-coding-agent-preset bundle patch.
+#
+# The package's `postinstall` script copies `presets/coding` into
+# `<dshHome>/.agent-presets/coding`, so the preset is available through the
+# user preset root. This patch additionally makes DSH's web profile default
+# new sessions to that `coding` preset.
+- id: agent-presets
+  config:
+    default: coding

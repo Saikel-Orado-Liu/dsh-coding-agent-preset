@@ -14,6 +14,31 @@
 
 ---
 
+## Installation
+
+The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-agent-preset`). Installing it into a DSH web profile automatically deploys the preset files and the two internal packages via the package `postinstall` script.
+
+Install into the web profile:
+
+```bash
+npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
+```
+
+Start DSH:
+
+```bash
+npx @deepseek-ai/dsh web
+```
+
+If you already have the DSH CLI installed globally, you can use `dsh` instead of `npx @deepseek-ai/dsh`:
+
+```bash
+dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
+dsh web
+```
+
+The package also keeps the original manual deployment path: copy `agent.cordis.yml` / `preset.yml` into `~/.dsh/.agent-presets/coding/`, then run `install.ps1` to copy the two internal packages into `~/.dsh/profiles/node_modules` and the harness `node_modules`.
+
 ## Overview
 
 The official persistent bash backend cannot run on Windows (its subprocess terminal inspection is Linux/macOS-only), and the official `dsh-tool-pwsh` is not persistent (every command starts a fresh `pwsh -Command`). This project therefore provides a Windows-native persistent pwsh stack with the same three-layer architecture as the official persistent bash:
@@ -35,36 +60,10 @@ The official persistent bash backend cannot run on Windows (its subprocess termi
 | Sandbox modes | `danger-full-access` → persistent PTY shell; confined modes → one-shot pwsh execution |
 | Escalation | Single-call `sandbox_permissions` + `justification` via `ctx.approval`; fail-closed |
 | Mode switching | Any effective sandbox-mode change closes persistent terminals; next call respawns under the new mode |
-| Install | `install.ps1` copies two packages into harness `node_modules` and `~/.dsh/profiles/node_modules` |
+| Install | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset` |
 | Tests | Prompt parity, sandbox escalation, sandbox mode switch |
 | Locale | English + Simplified Chinese |
 | License | MIT |
-
-## Installation
-
-The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-agent-preset`) that contains the preset files and the two internal packages. It is installed as a DSH user preset plus two local packages.
-
-1. Put the preset files into the DSH user preset directory:
-
-   ```powershell
-   New-Item -ItemType Directory -Force "$HOME\.dsh\.agent-presets\coding"
-   Copy-Item agent.cordis.yml, preset.yml "$HOME\.dsh\.agent-presets\coding\"
-   ```
-
-2. Deploy the two self-developed packages (required; preset rows reference them by subpath):
-
-   ```powershell
-   .\install.ps1
-   ```
-
-3. Create a new **“coding mode”** session in the DSH Web GUI.
-
-`install.ps1` copies `packages/` into two locations:
-
-- the harness `node_modules` (the current npx cache directory; it may be rebuilt on DSH upgrades)
-- `~/.dsh/profiles/node_modules` (the resolution base for preset rows)
-
-After a DSH upgrade, rerun `install.ps1` to restore the packages.
 
 ## Usage
 
@@ -105,8 +104,12 @@ Key implementation points:
 
 ```
 dsh-coding-agent-preset/
-├── agent.cordis.yml              # Preset composition (mounts to ~/.dsh/.agent-presets/coding/)
-├── preset.yml                    # Preset metadata (name: coding mode)
+├── agent.cordis.yml              # Root preset composition (manual install)
+├── preset.yml                    # Root preset metadata (manual install)
+├── cordis.patch.yml              # Web-profile bundle patch (defaults to coding preset)
+├── presets/coding/               # Auto-installed preset directory shipped in npm package
+│   ├── agent.cordis.yml
+│   └── preset.yml
 ├── install.ps1                   # One-shot deployment into the current DSH
 ├── package.json                  # Single npm package metadata for publishing
 ├── pnpm-lock.yaml                # Lockfile for npm/GitHub Actions
@@ -115,7 +118,8 @@ dsh-coding-agent-preset/
 ├── README.zh-CN.md               # 简体中文文档
 ├── .github/workflows/publish.yml # npm auto-publish on v* tags
 ├── scripts/
-│   └── check.mjs                 # Syntax check used by pnpm build
+│   ├── check.mjs                 # Syntax check used by pnpm build
+│   └── install-preset.mjs        # postinstall: copies preset + internal packages to DSH home
 ├── packages/
 │   ├── dsh-terminal-pwsh/        # PTY backend package (node-pty/ConPTY)
 │   │   └── lib/index.js

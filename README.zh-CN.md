@@ -14,6 +14,31 @@
 
 ---
 
+## 安装
+
+本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-agent-preset`）发布。安装到 DSH web profile 后，包的 `postinstall` 脚本会自动部署预设文件与两个内部包。
+
+安装到 web profile：
+
+```bash
+npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
+```
+
+启动 DSH：
+
+```bash
+npx @deepseek-ai/dsh web
+```
+
+如果已全局安装 DSH CLI，也可以用 `dsh` 代替 `npx @deepseek-ai/dsh`：
+
+```bash
+dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
+dsh web
+```
+
+本包也保留手动安装方式：将 `agent.cordis.yml` / `preset.yml` 复制到 `~/.dsh/.agent-presets/coding/`，然后运行 `install.ps1` 把两个内部包复制到 `~/.dsh/profiles/node_modules` 与 harness `node_modules`。
+
 ## 概述
 
 官方持久 bash 后端无法在 Windows 上运行（其 subprocess 终端检查仅支持 Linux/macOS），而官方 `dsh-tool-pwsh` 又不是持久的（每次命令都新起一个 `pwsh -Command`）。因此本项目提供了一套 Windows 原生的持久 pwsh 栈，与官方持久 bash 保持相同的三层架构：
@@ -35,36 +60,10 @@
 | 沙箱模式 | `danger-full-access` → 持久 PTY shell；受限模式 → 一次性 pwsh 执行 |
 | 提权 | 单次 `sandbox_permissions` + `justification`，经 `ctx.approval` 审批；fail-closed |
 | 模式切换 | 任何有效沙箱模式变化都会关闭持久终端；下一次调用按新模式重建 |
-| 安装 | `install.ps1` 把两个包复制到 harness `node_modules` 与 `~/.dsh/profiles/node_modules` |
+| 安装 | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset` |
 | 测试 | 提示面一致性、沙箱提权、沙箱模式切换 |
 | 本地化 | 简体中文 + English |
 | 许可证 | MIT |
-
-## 安装
-
-本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-agent-preset`）发布，包含预设文件与两个内部包；实际安装方式仍是“DSH 用户预设 + 两个本地包”。
-
-1. 将预设文件放入 DSH 用户预设目录：
-
-   ```powershell
-   New-Item -ItemType Directory -Force "$HOME\.dsh\.agent-presets\coding"
-   Copy-Item agent.cordis.yml, preset.yml "$HOME\.dsh\.agent-presets\coding\"
-   ```
-
-2. 部署两个自研包（必须；预设行通过子路径引用它们）：
-
-   ```powershell
-   .\install.ps1
-   ```
-
-3. 在 DSH Web GUI 中新建一个**“编码模式”**会话。
-
-`install.ps1` 会把 `packages/` 复制到两处：
-
-- harness 的 `node_modules`（当前 npx 缓存目录；DSH 升级后可能被重建）
-- `~/.dsh/profiles/node_modules`（预设行的实际解析基准）
-
-**DSH 升级后**：重跑 `install.ps1` 即可恢复。
 
 ## 用法
 
@@ -105,8 +104,12 @@ Write-Output "hello"
 
 ```
 dsh-coding-agent-preset/
-├── agent.cordis.yml              # 预设组合（挂载到 ~/.dsh/.agent-presets/coding/）
-├── preset.yml                    # 预设元数据（名称：编码模式）
+├── agent.cordis.yml              # 根预设组合（手动安装用）
+├── preset.yml                    # 根预设元数据（手动安装用）
+├── cordis.patch.yml              # Web profile bundle 补丁（默认使用 coding 预设）
+├── presets/coding/               # npm 包内随附、可自动安装的预设目录
+│   ├── agent.cordis.yml
+│   └── preset.yml
 ├── install.ps1                   # 一键部署到当前 DSH
 ├── package.json                  # 用于 npm 发布的单包元数据
 ├── pnpm-lock.yaml                # 锁文件（npm/GitHub Actions 使用）
@@ -115,7 +118,8 @@ dsh-coding-agent-preset/
 ├── README.zh-CN.md               # 简体中文文档
 ├── .github/workflows/publish.yml # v* 标签触发 npm 自动发布
 ├── scripts/
-│   └── check.mjs                 # pnpm build 使用的语法检查脚本
+│   ├── check.mjs                 # pnpm build 使用的语法检查脚本
+│   └── install-preset.mjs        # postinstall：复制预设与内部包到 DSH 目录
 ├── packages/
 │   ├── dsh-terminal-pwsh/        # PTY 后端包（node-pty/ConPTY）
 │   │   └── lib/index.js

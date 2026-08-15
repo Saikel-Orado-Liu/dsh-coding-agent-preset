@@ -1,0 +1,14 @@
+# 依赖与构建缓存
+node_modules/
+*.tsbuildinfo
+
+# 构建产物（本仓库无编译产物；lib 由 packages 内源码直接提供）
+lib/
+
+# npm 本地缓存
+.npm-cache*/
+*.tgz
+
+# 本地日志与系统文件
+*.log
+.DS_Store

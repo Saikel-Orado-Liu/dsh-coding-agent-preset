@@ -1,0 +1,48 @@
+{
+  "name": "@gamegeek-saikel/dsh-coding-agent-preset",
+  "version": "0.1.0",
+  "description": "Windows-adapted DeepSeek Harness coding-mode agent preset with a persistent PowerShell 7 shell.",
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/check.mjs",
+    "check": "node scripts/check.mjs",
+    "prepack": "node scripts/check.mjs"
+  },
+  "files": [
+    "agent.cordis.yml",
+    "preset.yml",
+    "install.ps1",
+    "packages",
+    "scripts",
+    "tests",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saikel-Orado-Liu/dsh-coding-agent-preset.git"
+  },
+  "homepage": "https://github.com/Saikel-Orado-Liu/dsh-coding-agent-preset#readme",
+  "bugs": {
+    "url": "https://github.com/Saikel-Orado-Liu/dsh-coding-agent-preset/issues"
+  },
+  "keywords": [
+    "deepseek",
+    "dsh",
+    "dsh-preset",
+    "dsh-plugin",
+    "coding-agent",
+    "windows",
+    "powershell",
+    "pwsh"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -42,7 +42,7 @@ The official persistent bash backend cannot run on Windows (its subprocess termi
 
 ## Installation
 
-The preset is not an npm-published plugin; it is installed as a DSH user preset plus two local packages.
+The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-agent-preset`) that contains the preset files and the two internal packages. It is installed as a DSH user preset plus two local packages.
 
 1. Put the preset files into the DSH user preset directory:
 
@@ -108,9 +108,14 @@ dsh-coding-agent-preset/
 ├── agent.cordis.yml              # Preset composition (mounts to ~/.dsh/.agent-presets/coding/)
 ├── preset.yml                    # Preset metadata (name: coding mode)
 ├── install.ps1                   # One-shot deployment into the current DSH
+├── package.json                  # Single npm package metadata for publishing
+├── pnpm-lock.yaml                # Lockfile for npm/GitHub Actions
 ├── LICENSE                       # MIT License
 ├── README.md                     # English documentation
 ├── README.zh-CN.md               # 简体中文文档
+├── .github/workflows/publish.yml # npm auto-publish on v* tags
+├── scripts/
+│   └── check.mjs                 # Syntax check used by pnpm build
 ├── packages/
 │   ├── dsh-terminal-pwsh/        # PTY backend package (node-pty/ConPTY)
 │   │   └── lib/index.js
@@ -124,7 +129,7 @@ dsh-coding-agent-preset/
 
 ## Development & Testing
 
-The repository has no root package.json; tests are plain Node scripts that import from the installed DSH harness `node_modules`.
+The repository root has a package.json for npm packaging; there is no runtime build step. `pnpm build` runs syntax checks over the package and test JS files. The tests themselves are plain Node scripts that import from the installed DSH harness `node_modules`.
 
 ```bash
 node tests/prompt-parity.mjs

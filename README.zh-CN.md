@@ -42,7 +42,7 @@
 
 ## 安装
 
-本项目不是 npm 发布的插件，而是“DSH 用户预设 + 两个本地包”的安装方式。
+本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-agent-preset`）发布，包含预设文件与两个内部包；实际安装方式仍是“DSH 用户预设 + 两个本地包”。
 
 1. 将预设文件放入 DSH 用户预设目录：
 
@@ -108,9 +108,14 @@ dsh-coding-agent-preset/
 ├── agent.cordis.yml              # 预设组合（挂载到 ~/.dsh/.agent-presets/coding/）
 ├── preset.yml                    # 预设元数据（名称：编码模式）
 ├── install.ps1                   # 一键部署到当前 DSH
+├── package.json                  # 用于 npm 发布的单包元数据
+├── pnpm-lock.yaml                # 锁文件（npm/GitHub Actions 使用）
 ├── LICENSE                       # MIT 许可证
 ├── README.md                     # English documentation
 ├── README.zh-CN.md               # 简体中文文档
+├── .github/workflows/publish.yml # v* 标签触发 npm 自动发布
+├── scripts/
+│   └── check.mjs                 # pnpm build 使用的语法检查脚本
 ├── packages/
 │   ├── dsh-terminal-pwsh/        # PTY 后端包（node-pty/ConPTY）
 │   │   └── lib/index.js
@@ -124,7 +129,7 @@ dsh-coding-agent-preset/
 
 ## 开发与测试
 
-仓库没有根 `package.json`；测试是直接使用 Node 运行的脚本，从已安装的 DSH harness `node_modules` 导入依赖。
+仓库根目录已有用于 npm 发布的 `package.json`；本项目没有运行时构建步骤，`pnpm build` 只对包内 JS/MJS 做语法检查。测试仍是直接使用 Node 运行的脚本，从已安装的 DSH harness `node_modules` 导入依赖。
 
 ```bash
 node tests/prompt-parity.mjs

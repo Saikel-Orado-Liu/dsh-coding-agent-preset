@@ -41,6 +41,18 @@ dsh web
 
 本包也保留手动安装方式：将 `agent.cordis.yml` / `preset.yml` 复制到 `~/.dsh/.agent-presets/coding/`，然后运行 `install.ps1` 把两个内部包复制到 `~/.dsh/profiles/node_modules` 与 harness `node_modules`。
 
+## Demo / 评测数据
+
+使用 DeepSeek V4 Pro（`reasoningEffort=max`）在两条“一句话网页应用生成”任务上验证。两次会话都只使用 `pwsh` + `str_replace_editor`，并生成了完整的单文件 HTML Demo。
+
+| 来源 | 产物 | 推理模块 | we | let's | let me | 可见回复 | 工具调用 | 耗时 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `_pro-test1` | `blackhole.html` | 98 | 411 | 383 | 6 | 1 | 102 | ~29 分钟 |
+| `_pro-test` | `index.html`（MC） | 162 | 525 | 539 | 4 | 1 | 167 | ~54 分钟 |
+
+Demo 文件与 Session 日志：[`demo/`](demo/)  
+完整分析：[`docs/pro-test-evaluation.md`](docs/pro-test-evaluation.md)
+
 ## 概述
 
 官方持久 bash 后端无法在 Windows 上运行（其 subprocess 终端检查仅支持 Linux/macOS），而官方 `dsh-tool-pwsh` 又不是持久的（每次命令都新起一个 `pwsh -Command`）。因此本项目提供了一套 Windows 原生的持久 pwsh 栈，与官方持久 bash 保持相同的三层架构：

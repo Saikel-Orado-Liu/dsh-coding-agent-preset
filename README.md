@@ -41,6 +41,18 @@ dsh web
 
 The package also keeps the original manual deployment path: copy `agent.cordis.yml` / `preset.yml` into `~/.dsh/.agent-presets/coding/`, then run `install.ps1` to copy the two internal packages into `~/.dsh/profiles/node_modules` and the harness `node_modules`.
 
+## Demo / Evaluation
+
+Validated with DeepSeek V4 Pro (`reasoningEffort=max`) on two one-sentence web-app generation tasks. Both sessions used only `pwsh` + `str_replace_editor` and produced complete single-file HTML demos.
+
+| Source | Artifact | Reasoning blocks | we | let's | let me | Visible replies | Tool calls | Duration |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `_pro-test1` | `blackhole.html` | 98 | 411 | 383 | 6 | 1 | 102 | ~29 min |
+| `_pro-test` | `index.html` (MC) | 162 | 525 | 539 | 4 | 1 | 167 | ~54 min |
+
+Demo files and session logs: [`demo/`](demo/)  
+Full analysis: [`docs/pro-test-evaluation.md`](docs/pro-test-evaluation.md)
+
 ## Overview
 
 The official persistent bash backend cannot run on Windows (its subprocess terminal inspection is Linux/macOS-only), and the official `dsh-tool-pwsh` is not persistent (every command starts a fresh `pwsh -Command`). This project therefore provides a Windows-native persistent pwsh stack with the same three-layer architecture as the official persistent bash:

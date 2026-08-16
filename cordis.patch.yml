@@ -4,6 +4,18 @@
 # `<dshHome>/.agent-presets/coding`, so the preset is available through the
 # user preset root. This patch additionally makes DSH's web profile default
 # new sessions to that `coding` preset.
+#
+# The official agent-preset client surface only localizes DSH's four shipped
+# preset ids. This package ships a small fork of that client bundle with the
+# `coding` id added to the built-in locale table, so the coding preset display
+# name/description switch with the DSH Web locale (zh/en).
 - id: agent-presets
   config:
     default: coding
+
+- id: ui-agent-preset
+  disabled: true
+
+- insert:
+    - id: ui-agent-preset-coding
+      name: '@gamegeek-saikel/dsh-coding-agent-preset'

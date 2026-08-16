@@ -76,7 +76,7 @@ Demo 文件与 Session 日志：[`demo/`](demo/)
 | 模式切换 | 任何有效沙箱模式变化都会关闭持久终端；下一次调用按新模式重建 |
 | 安装 | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset` |
 | 测试 | 提示面一致性、沙箱提权、沙箱模式切换 |
-| 本地化 | 简体中文 + English |
+| 本地化 | 简体中文 + English（预设展示随 DSH Web 界面语言切换） |
 | 许可证 | MIT |
 
 ## 用法
@@ -120,10 +120,15 @@ Write-Output "hello"
 dsh-coding-agent-preset/
 ├── agent.cordis.yml              # 根预设组合（手动安装用）
 ├── preset.yml                    # 根预设元数据（手动安装用）
-├── cordis.patch.yml              # Web profile bundle 补丁（默认使用 coding 预设）
+├── cordis.patch.yml              # Web profile bundle 补丁（默认使用 coding 预设；替换 agent-preset UI）
 ├── presets/coding/               # npm 包内随附、可自动安装的预设目录
 │   ├── agent.cordis.yml
 │   └── preset.yml
+├── dsh-coding-agent-client/      # dsh-client-ui-agent-preset 的 fork，加入 coding-mode 本地化支持
+│   ├── package.json
+│   └── lib/
+│       ├── client.js             # 浏览器半区：把 coding 加入内置预设本地化表
+│       └── index.js              # 宿主插件桩
 ├── install.ps1                   # 一键部署到当前 DSH
 ├── package.json                  # 用于 npm 发布的单包元数据
 ├── pnpm-lock.yaml                # 锁文件（npm/GitHub Actions 使用）

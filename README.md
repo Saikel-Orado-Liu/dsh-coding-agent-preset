@@ -76,7 +76,7 @@ The official persistent bash backend cannot run on Windows (its subprocess termi
 | Mode switching | Any effective sandbox-mode change closes persistent terminals; next call respawns under the new mode |
 | Install | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset` |
 | Tests | Prompt parity, sandbox escalation, sandbox mode switch |
-| Locale | English + Simplified Chinese |
+| Locale | English + Simplified Chinese (preset display follows the DSH Web locale) |
 | License | MIT |
 
 ## Usage
@@ -120,10 +120,15 @@ Key implementation points:
 dsh-coding-agent-preset/
 ├── agent.cordis.yml              # Root preset composition (manual install)
 ├── preset.yml                    # Root preset metadata (manual install)
-├── cordis.patch.yml              # Web-profile bundle patch (defaults to coding preset)
+├── cordis.patch.yml              # Web-profile bundle patch (defaults to coding preset; replaces agent-preset UI)
 ├── presets/coding/               # Auto-installed preset directory shipped in npm package
 │   ├── agent.cordis.yml
 │   └── preset.yml
+├── dsh-coding-agent-client/      # Fork of dsh-client-ui-agent-preset with coding-mode locale support
+│   ├── package.json
+│   └── lib/
+│       ├── client.js             # Browser half: adds coding to the built-in preset locale table
+│       └── index.js              # Host plugin stub
 ├── install.ps1                   # One-shot deployment into the current DSH
 ├── package.json                  # Single npm package metadata for publishing
 ├── pnpm-lock.yaml                # Lockfile for npm/GitHub Actions

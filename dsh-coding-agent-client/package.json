@@ -1,0 +1,14 @@
+{
+  "name": "dsh-coding-agent-client",
+  "version": "0.0.0",
+  "description": "dsh-coding-agent-preset client half: forked dsh-client-ui-agent-preset bundle with coding-mode system preset i18n",
+  "private": true,
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "license": "MIT"
+}

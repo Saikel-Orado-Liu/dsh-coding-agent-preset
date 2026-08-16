@@ -1,2 +1,2 @@
-name: 编码模式
-description: 极简模式的 Windows 适配：仅提供持久 pwsh 与 str_replace_editor 的双工具编码 Agent。
+name: Coding Mode · 编码模式
+description: '极简模式的 Windows 适配：仅提供持久 pwsh 与 str_replace_editor 的双工具编码 Agent。 / Minimal-mode Windows adaptation: a two-tool coding agent with persistent pwsh and str_replace_editor.'

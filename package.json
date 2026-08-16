@@ -18,6 +18,7 @@
     "preset.yml",
     "cordis.patch.yml",
     "presets",
+    "dsh-coding-agent-client",
     "install.ps1",
     "packages",
     "scripts",
@@ -48,10 +49,26 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-api-remotes"
+      ],
+      "platform": "web"
     }
   },
   "publishConfig": {
     "access": "public"
+  },
+  "main": "dsh-coding-agent-client/lib/index.js",
+  "exports": {
+    ".": "./dsh-coding-agent-client/lib/index.js",
+    "./client": "./dsh-coding-agent-client/lib/client.js",
+    "./package.json": "./package.json"
   }
 }
-

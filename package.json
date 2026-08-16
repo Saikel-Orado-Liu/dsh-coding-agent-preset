@@ -1,6 +1,6 @@
 {
   "name": "@gamegeek-saikel/dsh-coding-agent-preset",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Windows-adapted DeepSeek Harness coding-mode agent preset with a persistent PowerShell 7 shell.",
   "type": "module",
   "packageManager": "pnpm@11.7.0",

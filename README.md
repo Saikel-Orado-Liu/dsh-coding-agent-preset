@@ -6,8 +6,7 @@
   <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
-> **⚠️ DEPRECATED / 已弃用**  
-> DSH 官方现已默认提供该功能，本包不再推荐安装，仅作历史参考。  
+> **⚠️ DEPRECATED**  
 > This package is deprecated because DSH official now provides this functionality by default. It is kept for historical reference only.
 
 **DSH Coding Preset** is a Windows-adapted **“coding mode” agent preset** for DeepSeek Harness (DSH) — an exact Windows port of the official **minimal** preset. It keeps the official minimal composition (fixed persona, no context compaction, only `pwsh` + `str_replace_editor`), but replaces the official persistent bash with a **persistent PowerShell 7 (pwsh)** shell.

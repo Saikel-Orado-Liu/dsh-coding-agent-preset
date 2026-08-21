@@ -7,8 +7,8 @@
 </p>
 
 > **⚠️ 已弃用**  
-> DSH 官方现已默认提供该功能，本包不再推荐安装，仅作历史参考。  
-> 本包已弃用，因为 DSH 官方已默认实现该功能。
+> DSH 官方极简模式现已默认提供该功能，本包不再推荐安装，仅作历史参考。  
+> 本包已弃用，因为 DSH 官方极简模式已默认实现该功能。
 
 **DSH Coding Preset** 是为 DeepSeek Harness（DSH）打造的 Windows 适配版**“编码模式”Agent 预设**——官方**极简模式（minimal）**的 Windows 移植。它保留官方 minimal 的组成（固定 persona、无上下文压缩、仅 `pwsh` + `str_replace_editor` 两个工具），但把官方持久 bash 替换为**持久 PowerShell 7（pwsh）**。
 
@@ -20,7 +20,7 @@
 
 ## 安装
 
-> **注意：** 本包**已弃用**，请优先使用 DSH 官方内置的编码模式。以下命令仅作历史参考保留。
+> **注意：** 本包**已弃用**，请优先使用 DSH 官方**极简模式（minimal）**，官方已默认提供相同功能。以下命令仅作历史参考保留。
 
 本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-agent-preset`）发布。安装到 DSH web profile 后，包的 `postinstall` 脚本会自动部署预设文件与两个内部包。
 

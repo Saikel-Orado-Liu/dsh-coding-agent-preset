@@ -7,7 +7,7 @@
 </p>
 
 > **⚠️ DEPRECATED**  
-> This package is deprecated because DSH official now provides this functionality by default. It is kept for historical reference only.
+> This package is deprecated because DSH official minimal mode now provides this functionality by default. It is kept for historical reference only.
 
 **DSH Coding Preset** is a Windows-adapted **“coding mode” agent preset** for DeepSeek Harness (DSH) — an exact Windows port of the official **minimal** preset. It keeps the official minimal composition (fixed persona, no context compaction, only `pwsh` + `str_replace_editor`), but replaces the official persistent bash with a **persistent PowerShell 7 (pwsh)** shell.
 
@@ -19,7 +19,7 @@
 
 ## Installation
 
-> **Note:** This package is **deprecated**. Prefer DSH's official built-in coding mode. The commands below are kept for historical reference only.
+> **Note:** This package is **deprecated**. Prefer DSH's official **minimal mode**, which now provides the same functionality by default. The commands below are kept for historical reference only.
 
 The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-agent-preset`). Installing it into a DSH web profile automatically deploys the preset files and the two internal packages via the package `postinstall` script.
 

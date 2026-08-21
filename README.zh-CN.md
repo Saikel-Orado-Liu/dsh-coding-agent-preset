@@ -22,14 +22,14 @@
 
 > **注意：** 本包**已弃用**，请优先使用 DSH 官方内置的编码模式。以下命令仅作历史参考保留。
 
-本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-preset`）发布。安装到 DSH web profile 后，包的 `postinstall` 脚本会自动部署预设文件与两个内部包。
+本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-agent-preset`）发布。安装到 DSH web profile 后，包的 `postinstall` 脚本会自动部署预设文件与两个内部包。
 
 > **前置要求：** 本预设需要 **PowerShell 7（`pwsh`）**，不是 Windows 自带的 Windows PowerShell 5.1（`powershell.exe`）。请手动安装 PowerShell 7，例如从 <https://github.com/PowerShell/PowerShell/releases> 下载，或运行 `winget install Microsoft.PowerShell`。
 
 安装到 web profile：
 
 ```bash
-npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset
+npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
 ```
 
 启动 DSH：
@@ -41,7 +41,7 @@ npx @deepseek-ai/dsh web
 如果已全局安装 DSH CLI，也可以用 `dsh` 代替 `npx @deepseek-ai/dsh`：
 
 ```bash
-dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset
+dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
 dsh web
 ```
 
@@ -80,7 +80,7 @@ Demo 文件与 Session 日志：[`demo/`](demo/)
 | 沙箱模式 | `danger-full-access` → 持久 PTY shell；受限模式 → 一次性 pwsh 执行 |
 | 提权 | 单次 `sandbox_permissions` + `justification`，经 `ctx.approval` 审批；fail-closed |
 | 模式切换 | 任何有效沙箱模式变化都会关闭持久终端；下一次调用按新模式重建 |
-| 安装 | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset` |
+| 安装 | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset` |
 | 测试 | 提示面一致性、沙箱提权、沙箱模式切换 |
 | 本地化 | 简体中文 + English（预设展示随 DSH Web 界面语言切换） |
 | 许可证 | MIT |

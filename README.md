@@ -21,14 +21,14 @@
 
 > **Note:** This package is **deprecated**. Prefer DSH's official built-in coding mode. The commands below are kept for historical reference only.
 
-The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-preset`). Installing it into a DSH web profile automatically deploys the preset files and the two internal packages via the package `postinstall` script.
+The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-agent-preset`). Installing it into a DSH web profile automatically deploys the preset files and the two internal packages via the package `postinstall` script.
 
 > **Prerequisite:** This preset requires **PowerShell 7 (`pwsh`)**, not the built-in Windows PowerShell 5.1 (`powershell.exe`). Please install PowerShell 7 manually from <https://github.com/PowerShell/PowerShell/releases> or run `winget install Microsoft.PowerShell`.
 
 Install into the web profile:
 
 ```bash
-npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset
+npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
 ```
 
 Start DSH:
@@ -40,7 +40,7 @@ npx @deepseek-ai/dsh web
 If you already have the DSH CLI installed globally, you can use `dsh` instead of `npx @deepseek-ai/dsh`:
 
 ```bash
-dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset
+dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
 dsh web
 ```
 
@@ -79,7 +79,7 @@ The official persistent bash backend cannot run on Windows (its subprocess termi
 | Sandbox modes | `danger-full-access` → persistent PTY shell; confined modes → one-shot pwsh execution |
 | Escalation | Single-call `sandbox_permissions` + `justification` via `ctx.approval`; fail-closed |
 | Mode switching | Any effective sandbox-mode change closes persistent terminals; next call respawns under the new mode |
-| Install | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset` |
+| Install | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset` |
 | Tests | Prompt parity, sandbox escalation, sandbox mode switch |
 | Locale | English + Simplified Chinese (preset display follows the DSH Web locale) |
 | License | MIT |

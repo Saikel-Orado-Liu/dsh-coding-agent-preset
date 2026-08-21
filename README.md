@@ -1,4 +1,4 @@
-<h1 align="center">DSH Coding Agent Preset</h1>
+<h1 align="center">DSH Coding Preset</h1>
 
 <p align="center">
   <strong>English</strong>
@@ -6,7 +6,11 @@
   <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
-**DSH Coding Agent Preset** is a Windows-adapted **“coding mode” agent preset** for DeepSeek Harness (DSH) — an exact Windows port of the official **minimal** preset. It keeps the official minimal composition (fixed persona, no context compaction, only `pwsh` + `str_replace_editor`), but replaces the official persistent bash with a **persistent PowerShell 7 (pwsh)** shell.
+> **⚠️ DEPRECATED / 已弃用**  
+> DSH 官方现已默认提供该功能，本包不再推荐安装，仅作历史参考。  
+> This package is deprecated because DSH official now provides this functionality by default. It is kept for historical reference only.
+
+**DSH Coding Preset** is a Windows-adapted **“coding mode” agent preset** for DeepSeek Harness (DSH) — an exact Windows port of the official **minimal** preset. It keeps the official minimal composition (fixed persona, no context compaction, only `pwsh` + `str_replace_editor`), but replaces the official persistent bash with a **persistent PowerShell 7 (pwsh)** shell.
 
 - PTY backend (`packages/dsh-terminal-pwsh/`): a node-pty/ConPTY persistent pwsh backend, mirroring `@deepseek-ai/dsh-terminal-bash`.
 - Model-facing tool (`packages/dsh-tool-pwsh-persistent/`): a persistent pwsh tool, mirroring `@deepseek-ai/dsh-tool-bash-persistent`.
@@ -16,14 +20,16 @@
 
 ## Installation
 
-The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-agent-preset`). Installing it into a DSH web profile automatically deploys the preset files and the two internal packages via the package `postinstall` script.
+> **Note:** This package is **deprecated**. Prefer DSH's official built-in coding mode. The commands below are kept for historical reference only.
+
+The preset is published as a single npm package (`@gamegeek-saikel/dsh-coding-preset`). Installing it into a DSH web profile automatically deploys the preset files and the two internal packages via the package `postinstall` script.
 
 > **Prerequisite:** This preset requires **PowerShell 7 (`pwsh`)**, not the built-in Windows PowerShell 5.1 (`powershell.exe`). Please install PowerShell 7 manually from <https://github.com/PowerShell/PowerShell/releases> or run `winget install Microsoft.PowerShell`.
 
 Install into the web profile:
 
 ```bash
-npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
+npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset
 ```
 
 Start DSH:
@@ -35,7 +41,7 @@ npx @deepseek-ai/dsh web
 If you already have the DSH CLI installed globally, you can use `dsh` instead of `npx @deepseek-ai/dsh`:
 
 ```bash
-dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
+dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset
 dsh web
 ```
 
@@ -74,7 +80,7 @@ The official persistent bash backend cannot run on Windows (its subprocess termi
 | Sandbox modes | `danger-full-access` → persistent PTY shell; confined modes → one-shot pwsh execution |
 | Escalation | Single-call `sandbox_permissions` + `justification` via `ctx.approval`; fail-closed |
 | Mode switching | Any effective sandbox-mode change closes persistent terminals; next call respawns under the new mode |
-| Install | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset` |
+| Install | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset` |
 | Tests | Prompt parity, sandbox escalation, sandbox mode switch |
 | Locale | English + Simplified Chinese (preset display follows the DSH Web locale) |
 | License | MIT |
@@ -117,14 +123,14 @@ Key implementation points:
 ## Project Structure
 
 ```
-dsh-coding-agent-preset/
+dsh-coding-preset/
 ├── agent.cordis.yml              # Root preset composition (manual install)
 ├── preset.yml                    # Root preset metadata (manual install)
 ├── cordis.patch.yml              # Web-profile bundle patch (defaults to coding preset; replaces agent-preset UI)
 ├── presets/coding/               # Auto-installed preset directory shipped in npm package
 │   ├── agent.cordis.yml
 │   └── preset.yml
-├── dsh-coding-agent-client/      # Fork of dsh-client-ui-agent-preset with coding-mode locale support
+├── dsh-coding-preset-client/      # Fork of dsh-client-ui-agent-preset with coding-mode locale support
 │   ├── package.json
 │   └── lib/
 │       ├── client.js             # Browser half: adds coding to the built-in preset locale table
@@ -135,6 +141,7 @@ dsh-coding-agent-preset/
 ├── LICENSE                       # MIT License
 ├── README.md                     # English documentation
 ├── README.zh-CN.md               # 简体中文文档
+├── DEPRECATED.md                 # Deprecation notice (DSH official now provides this)
 ├── docs/
 │   ├── pro-test-evaluation.md    # Pro-mode black-hole / MC evaluation evidence
 │   └── pro-test-data.json        # Machine-readable evaluation data

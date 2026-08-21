@@ -1,7 +1,7 @@
 {
-  "name": "dsh-coding-agent-client",
+  "name": "dsh-coding-preset-client",
   "version": "0.0.0",
-  "description": "dsh-coding-agent-preset client half: forked dsh-client-ui-agent-preset bundle with coding-mode system preset i18n",
+  "description": "dsh-coding-preset client half: forked dsh-client-ui-agent-preset bundle with coding-mode system preset i18n",
   "private": true,
   "type": "module",
   "main": "lib/index.js",

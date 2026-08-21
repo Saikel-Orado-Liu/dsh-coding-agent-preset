@@ -1,4 +1,4 @@
-<h1 align="center">DSH Coding Agent Preset（DSH 编码模式预设）</h1>
+<h1 align="center">DSH Coding Preset（DSH 编码模式预设）</h1>
 
 <p align="center">
   <a href="./README.md">English</a>
@@ -6,7 +6,11 @@
   <strong>简体中文</strong>
 </p>
 
-**DSH Coding Agent Preset** 是为 DeepSeek Harness（DSH）打造的 Windows 适配版**“编码模式”Agent 预设**——官方**极简模式（minimal）**的 Windows 移植。它保留官方 minimal 的组成（固定 persona、无上下文压缩、仅 `pwsh` + `str_replace_editor` 两个工具），但把官方持久 bash 替换为**持久 PowerShell 7（pwsh）**。
+> **⚠️ 已弃用 / DEPRECATED**  
+> DSH 官方现已默认提供该功能，本包不再推荐安装，仅作历史参考。  
+> 本包已弃用，因为 DSH 官方已默认实现该功能。
+
+**DSH Coding Preset** 是为 DeepSeek Harness（DSH）打造的 Windows 适配版**“编码模式”Agent 预设**——官方**极简模式（minimal）**的 Windows 移植。它保留官方 minimal 的组成（固定 persona、无上下文压缩、仅 `pwsh` + `str_replace_editor` 两个工具），但把官方持久 bash 替换为**持久 PowerShell 7（pwsh）**。
 
 - PTY 后端（`packages/dsh-terminal-pwsh/`）：基于 node-pty/ConPTY 的持久 pwsh 后端，仿照 `@deepseek-ai/dsh-terminal-bash`。
 - 模型侧工具（`packages/dsh-tool-pwsh-persistent/`）：持久 pwsh 工具，仿照 `@deepseek-ai/dsh-tool-bash-persistent`。
@@ -16,14 +20,16 @@
 
 ## 安装
 
-本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-agent-preset`）发布。安装到 DSH web profile 后，包的 `postinstall` 脚本会自动部署预设文件与两个内部包。
+> **注意：** 本包**已弃用**，请优先使用 DSH 官方内置的编码模式。以下命令仅作历史参考保留。
+
+本项目以单个 npm 包（`@gamegeek-saikel/dsh-coding-preset`）发布。安装到 DSH web profile 后，包的 `postinstall` 脚本会自动部署预设文件与两个内部包。
 
 > **前置要求：** 本预设需要 **PowerShell 7（`pwsh`）**，不是 Windows 自带的 Windows PowerShell 5.1（`powershell.exe`）。请手动安装 PowerShell 7，例如从 <https://github.com/PowerShell/PowerShell/releases> 下载，或运行 `winget install Microsoft.PowerShell`。
 
 安装到 web profile：
 
 ```bash
-npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
+npx @deepseek-ai/dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset
 ```
 
 启动 DSH：
@@ -35,7 +41,7 @@ npx @deepseek-ai/dsh web
 如果已全局安装 DSH CLI，也可以用 `dsh` 代替 `npx @deepseek-ai/dsh`：
 
 ```bash
-dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset
+dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset
 dsh web
 ```
 
@@ -74,7 +80,7 @@ Demo 文件与 Session 日志：[`demo/`](demo/)
 | 沙箱模式 | `danger-full-access` → 持久 PTY shell；受限模式 → 一次性 pwsh 执行 |
 | 提权 | 单次 `sandbox_permissions` + `justification`，经 `ctx.approval` 审批；fail-closed |
 | 模式切换 | 任何有效沙箱模式变化都会关闭持久终端；下一次调用按新模式重建 |
-| 安装 | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset` |
+| 安装 | `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset` |
 | 测试 | 提示面一致性、沙箱提权、沙箱模式切换 |
 | 本地化 | 简体中文 + English（预设展示随 DSH Web 界面语言切换） |
 | 许可证 | MIT |
@@ -117,14 +123,14 @@ Write-Output "hello"
 ## 项目结构
 
 ```
-dsh-coding-agent-preset/
+dsh-coding-preset/
 ├── agent.cordis.yml              # 根预设组合（手动安装用）
 ├── preset.yml                    # 根预设元数据（手动安装用）
 ├── cordis.patch.yml              # Web profile bundle 补丁（默认使用 coding 预设；替换 agent-preset UI）
 ├── presets/coding/               # npm 包内随附、可自动安装的预设目录
 │   ├── agent.cordis.yml
 │   └── preset.yml
-├── dsh-coding-agent-client/      # dsh-client-ui-agent-preset 的 fork，加入 coding-mode 本地化支持
+├── dsh-coding-preset-client/      # dsh-client-ui-agent-preset 的 fork，加入 coding-mode 本地化支持
 │   ├── package.json
 │   └── lib/
 │       ├── client.js             # 浏览器半区：把 coding 加入内置预设本地化表
@@ -135,6 +141,7 @@ dsh-coding-agent-preset/
 ├── LICENSE                       # MIT 许可证
 ├── README.md                     # English documentation
 ├── README.zh-CN.md               # 简体中文文档
+├── DEPRECATED.md                 # 弃用说明（DSH 官方已默认实现）
 ├── docs/
 │   ├── pro-test-evaluation.md    # Pro 模式黑洞 / MC 评测数据
 │   └── pro-test-data.json        # 机器可读的评测数据

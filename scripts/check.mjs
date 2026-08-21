@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { join, relative } from 'node:path'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
-const roots = ['packages', 'dsh-coding-agent-client', 'tests']
+const roots = ['packages', 'dsh-coding-preset-client', 'tests']
 const files = []
 
 function collect(dir) {

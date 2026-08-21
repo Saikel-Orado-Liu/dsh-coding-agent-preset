@@ -1,5 +1,5 @@
 window.__ModuleLoader__.load({
-	id: "@gamegeek-saikel/dsh-coding-agent-preset",
+	id: "@gamegeek-saikel/dsh-coding-preset",
 	factory: (require) => {
 		var module = { exports: {} };
 		var exports = module.exports;
@@ -175,7 +175,7 @@ window.__ModuleLoader__.load({
 		const tagId$3 = "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetLabel.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId$3) + "]") === null) {
 			const tag = document.createElement("style");
-			tag.dataset.plugin = "@gamegeek-saikel/dsh-coding-agent-preset";
+			tag.dataset.plugin = "@gamegeek-saikel/dsh-coding-preset";
 			tag.dataset.pluginCss = tagId$3;
 			tag.textContent = css$3;
 			document.head.appendChild(tag);
@@ -274,7 +274,7 @@ window.__ModuleLoader__.load({
 		const tagId$2 = "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetRow.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId$2) + "]") === null) {
 			const tag = document.createElement("style");
-			tag.dataset.plugin = "@gamegeek-saikel/dsh-coding-agent-preset";
+			tag.dataset.plugin = "@gamegeek-saikel/dsh-coding-preset";
 			tag.dataset.pluginCss = tagId$2;
 			tag.textContent = css$2;
 			document.head.appendChild(tag);
@@ -349,7 +349,7 @@ window.__ModuleLoader__.load({
 		const tagId$1 = "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetSeat.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId$1) + "]") === null) {
 			const tag = document.createElement("style");
-			tag.dataset.plugin = "@gamegeek-saikel/dsh-coding-agent-preset";
+			tag.dataset.plugin = "@gamegeek-saikel/dsh-coding-preset";
 			tag.dataset.pluginCss = tagId$1;
 			tag.textContent = css$1;
 			document.head.appendChild(tag);
@@ -990,7 +990,7 @@ window.__ModuleLoader__.load({
 		const tagId = "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetSection.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId) + "]") === null) {
 			const tag = document.createElement("style");
-			tag.dataset.plugin = "@gamegeek-saikel/dsh-coding-agent-preset";
+			tag.dataset.plugin = "@gamegeek-saikel/dsh-coding-preset";
 			tag.dataset.pluginCss = tagId;
 			tag.textContent = css;
 			document.head.appendChild(tag);

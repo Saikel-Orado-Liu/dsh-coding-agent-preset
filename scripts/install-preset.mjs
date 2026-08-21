@@ -7,7 +7,7 @@
 //   2. Copies the two internal packages into `<dshHome>/profiles/node_modules`,
 //      which is the resolution base for preset rows.
 //
-// This makes `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-agent-preset`
+// This makes `dsh plugin --profile web add @gamegeek-saikel/dsh-coding-preset`
 // install both the profile dependency and the actual preset files automatically.
 
 import { cp, mkdir } from 'node:fs/promises'
@@ -39,17 +39,17 @@ const targets = [
 
 for (const target of targets) {
   if (!existsSync(target.from)) {
-    console.error(`[dsh-coding-agent-preset] missing source: ${target.from}`)
+    console.error(`[dsh-coding-preset] missing source: ${target.from}`)
     process.exitCode = 1
     continue
   }
   await mkdir(dirname(target.to), { recursive: true })
   await cp(target.from, target.to, { recursive: true, force: true })
-  console.log(`[dsh-coding-agent-preset] installed ${target.label} -> ${target.to}`)
+  console.log(`[dsh-coding-preset] installed ${target.label} -> ${target.to}`)
 }
 
 if (process.exitCode) {
-  console.error('[dsh-coding-agent-preset] auto-install failed')
+  console.error('[dsh-coding-preset] auto-install failed')
 } else {
-  console.log('[dsh-coding-agent-preset] auto-install complete')
+  console.log('[dsh-coding-preset] auto-install complete')
 }

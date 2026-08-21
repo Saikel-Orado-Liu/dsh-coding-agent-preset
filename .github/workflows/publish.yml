@@ -41,7 +41,7 @@ jobs:
         id: check
         run: |
           PKG_VERSION=$(node -p "require('./package.json').version")
-          if npm view "@gamegeek-saikel/dsh-coding-agent-preset@$PKG_VERSION" version >/dev/null 2>&1; then
+          if npm view "@gamegeek-saikel/dsh-coding-preset@$PKG_VERSION" version >/dev/null 2>&1; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             echo "Version $PKG_VERSION already published; skipping publish."
           else
@@ -51,3 +51,10 @@ jobs:
       - name: Publish to npm
         if: steps.check.outputs.skip != 'true'
         run: npm publish --provenance --access public
+
+      - name: Deprecate package
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          npm deprecate "@gamegeek-saikel/dsh-coding-preset@$PKG_VERSION" \
+            "DEPRECATED: DSH official now provides this functionality by default. Use official DSH instead."

@@ -1,7 +1,7 @@
 {
-  "name": "@gamegeek-saikel/dsh-coding-agent-preset",
+  "name": "@gamegeek-saikel/dsh-coding-preset",
   "version": "0.1.2",
-  "description": "Windows-adapted DeepSeek Harness coding-mode agent preset with a persistent PowerShell 7 shell.",
+  "description": "DEPRECATED: Windows-adapted DeepSeek Harness coding-mode agent preset with a persistent PowerShell 7 shell. DSH official now provides this functionality by default.",
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "engines": {
@@ -18,23 +18,24 @@
     "preset.yml",
     "cordis.patch.yml",
     "presets",
-    "dsh-coding-agent-client",
+    "dsh-coding-preset-client",
     "install.ps1",
     "packages",
     "scripts",
     "tests",
     "README.md",
     "README.zh-CN.md",
+    "DEPRECATED.md",
     "LICENSE"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Saikel-Orado-Liu/dsh-coding-agent-preset.git"
+    "url": "git+https://github.com/Saikel-Orado-Liu/dsh-coding-preset.git"
   },
-  "homepage": "https://github.com/Saikel-Orado-Liu/dsh-coding-agent-preset#readme",
+  "homepage": "https://github.com/Saikel-Orado-Liu/dsh-coding-preset#readme",
   "bugs": {
-    "url": "https://github.com/Saikel-Orado-Liu/dsh-coding-agent-preset/issues"
+    "url": "https://github.com/Saikel-Orado-Liu/dsh-coding-preset/issues"
   },
   "keywords": [
     "deepseek",
@@ -65,10 +66,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dsh-coding-agent-client/lib/index.js",
+  "main": "dsh-coding-preset-client/lib/index.js",
   "exports": {
-    ".": "./dsh-coding-agent-client/lib/index.js",
-    "./client": "./dsh-coding-agent-client/lib/client.js",
+    ".": "./dsh-coding-preset-client/lib/index.js",
+    "./client": "./dsh-coding-preset-client/lib/client.js",
     "./package.json": "./package.json"
   }
 }

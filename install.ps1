@@ -1,7 +1,7 @@
 # install.ps1 — 将「编码模式」预设的两个自研包部署到当前 DSH
 #
 # 用法：
-#   pwsh -File "D:\Projects\dsh-plugins\dsh-coding-agent-preset\install.ps1"
+#   pwsh -File "D:\Projects\dsh-plugins\dsh-coding-preset\install.ps1"
 #
 # 什么时候需要运行：
 #   - 首次安装（或克隆本仓库后）

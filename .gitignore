@@ -4,8 +4,8 @@ node_modules/
 
 # 构建产物（本仓库无编译产物；lib 由 packages 内源码直接提供）
 lib/
-!dsh-coding-agent-client/lib/
-!dsh-coding-agent-client/lib/**
+!dsh-coding-preset-client/lib/
+!dsh-coding-preset-client/lib/**
 
 # npm 本地缓存
 .npm-cache*/
